@@ -75,7 +75,9 @@ const LoginForm = (props: Props) => {
         type="submit"
         disabled={!isValid}
         className="flex w-full justify-center rounded-md bg-indigo-900 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 disabled:bg-slate-400 disabled:opacity-40">
-        {isValid ? 'Sign in' : 'Please fill form'}
+        <span className={`${isValid ? 'animate-pulse' : null}`}>
+          {isValid ? 'Sign in' : 'Please fill form'}
+        </span>
       </button>
     </form>
   );
