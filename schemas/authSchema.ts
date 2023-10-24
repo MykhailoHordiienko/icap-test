@@ -2,7 +2,7 @@ import * as yup from 'yup';
 
 export const logInSchema = yup
   .object({
-    userName: yup
+    username: yup
       .string()
       .required('Enter User Name')
       .min(4, 'Minimum 4 characters')

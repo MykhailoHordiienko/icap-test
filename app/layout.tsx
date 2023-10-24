@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
+import { Providers } from '@/providers/providers';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -23,7 +24,9 @@ export default function RootLayout({
     to-yellow-500
     bg-[size:300%]
     animate-gradient-x`}>
-        {children}
+        <Providers>
+          <main className="w-full h-screen">{children}</main>
+        </Providers>
       </body>
     </html>
   );

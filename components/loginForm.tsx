@@ -3,10 +3,14 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { logInSchema } from '@/schemas/authSchema';
+import { logInUser } from '@/redux/operations/authOperations';
+import { useAppDispatch } from '@/hooks/reduxHooks';
 
 type Props = {};
 
 const LoginForm = (props: Props) => {
+  const dispatch = useAppDispatch();
+
   const {
     register,
     handleSubmit,
@@ -16,10 +20,9 @@ const LoginForm = (props: Props) => {
     resolver: yupResolver(logInSchema),
     mode: 'all',
   });
-  console.log(errors);
 
   const onSubmit: SubmitHandler<TypeLogin> = data => {
-    console.log(data);
+    dispatch(logInUser(data));
     reset();
   };
   return (
@@ -34,16 +37,16 @@ const LoginForm = (props: Props) => {
 
       <div className="relative">
         <input
-          {...register('userName')}
+          {...register('username')}
           id="userName"
           placeholder="Enter your name"
           className={`block w-full rounded-md border p-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 ${
-            errors.userName ? 'border-rose-400' : null
+            errors.username ? 'border-rose-400' : null
           }`}
         />
-        {errors.userName && (
+        {errors.username && (
           <p className="absolute -left-48 top-1 p-1 text-red-100 animate-pulse border border-dotted rounded-lg border-rose-400">
-            {errors.userName.message}
+            {errors.username.message}
           </p>
         )}
       </div>
